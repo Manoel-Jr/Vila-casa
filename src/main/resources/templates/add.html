@@ -1,0 +1,104 @@
+<html xmlns:th="
+http://www.thymeleaf.org
+">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title>Cadastro</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"rel="stylesheet"></link>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
+<body>
+	<div class="container">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<strong>Cadastro de Pessoas</strong>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" th:object="${inquilino}" th:action="@{/save}" method="POST" style="margin: 10px">
+					<div class="form-group">
+						<fieldset>
+							<div class="form-group row">
+								<div class="alert alert-danger"
+									th:if="${#fields.hasAnyErrors()}">
+									<div th:each="detailedError : ${#fields.detailedErrors()}">
+										<span th:text="${detailedError.message}"></span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-1">
+									<input type="text" class="form-control input-sm" id="id"
+										th:field="*{id}" readOnly="readonly" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4"
+									th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+									<label>Nome Completo</label> <input type="text"
+										class="form-control input-sm" th:field="*{nome}"
+										autofocus="autofocus" placeholder="Informe o Nome"
+										maxlength="50" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4"
+									th:classappend="${#fields.hasErrors('cpf')}? 'has-error'">
+									<label>CPF</label> <input type="text"
+										class="form-control input-sm" th:field="*{cpf}"
+										maxlength="150" placeholder="Informe o CPF" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-2"
+									th:classappend="${#fields.hasErrors('data')}? 'has-error'">
+									<label>Data</label> <input type="date"
+										class="form-control input-sm" th:field="*{data}" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4"
+									th:classappend="${#fields.hasErrors('telefone')}? 'has-error'">
+									<label>Telefone</label> <input type="tel"
+										class="form-control input-sm" th:field="*{telefone}"
+										maxlength="150" placeholder="Informe o Telefone" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4"
+									th:classappend="${#fields.hasErrors('quantPessoas')}? 'has-error'">
+									<label>Numero de Pessoas</label> <input type="text"
+										class="form-control input-sm" th:field="*{quantPessoas}"
+										maxlength="150" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4"
+									th:classappend="${#fields.hasErrors('fianca')}? 'has-error'">
+									<label>Fiança</label> <input type="text"
+										class="form-control input-sm" th:field="*{fianca}"
+										maxlength="150" placeholder="00,00" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-md-4"
+									th:classappend="${#fields.hasErrors('mensalidade')}? 'has-error'">
+									<label>Mensalidade</label> <input type="text"
+										class="form-control input-sm" th:field="*{mensalidade}"
+										maxlength="150" />
+								</div>
+							</div>
+						</fieldset>
+					</div>
+					<div class="form-group row">
+						<button type="submit"  class="btn btn-sm btn-primary">Salvar</button>
+						<a th:href="@{/}" class="btn btn-sm btn-default">Cancelar</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

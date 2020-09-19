@@ -12,7 +12,7 @@ public interface InquilinoService {
 	
 	Inquilino buscarPorId(Long id);
 	
-	Inquilino atualizarDadosInquilino(Inquilino inquilino, Long id);
+	Inquilino atualizarDadosInquilino(Long id);
 	
 	void deletaInquilino(Long id);
 	
