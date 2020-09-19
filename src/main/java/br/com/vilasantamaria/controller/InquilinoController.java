@@ -33,7 +33,7 @@ public class InquilinoController {
 		return mv;
 	}
 	
-	@GetMapping("/edit/{i}")
+	@GetMapping("/edit/{id}")
 	public ModelAndView editar(@PathVariable ("id") Long id,Inquilino inquilino){
 	
 	return add(service.update(inquilino, id));
