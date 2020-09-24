@@ -1,5 +1,7 @@
 package br.com.vilasantamaria.controller;
 
+
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +35,15 @@ public class InquilinoController {
 		return mv;
 	}
 	
-	@GetMapping("/edit/{id}")
-	public ModelAndView editar(@PathVariable ("id") Long id,Inquilino inquilino){
-	
-	return add(service.update(inquilino, id));
+//	@GetMapping("/edit/{id}")
+//	public ModelAndView editar(@PathVariable ("id") Long id,Inquilino inquilino){
+//	return add(service.update(inquilino, id));
+//	}
+	@GetMapping("editar/{id}")
+	public ModelAndView editar(@PathVariable ("id") Long id,Inquilino inquilino, ModelAndView view) {
+		ModelAndView Tview = new ModelAndView("add");
+		Tview.addObject("inquilino", service.findOne(id));
+		return Tview;
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -57,5 +64,12 @@ public class InquilinoController {
 	@GetMapping("/buscar")
 	public Inquilino buscarPorId(@PathVariable ("id") Long id) {
 		return service.findOne(id);
+	}
+	
+	@PostMapping("/consultar")
+	public ModelAndView pesquisar(@PathVariable("cpf") String cpf) {
+		ModelAndView  view = new ModelAndView("listar");
+		view.addObject("inquilinos", service.findByCpf(cpf));
+		return view;
 	}
 }
